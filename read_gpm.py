@@ -38,5 +38,10 @@ def get_gpm_filelist(start_time, end_time):
     Given a time interval, generates list of GPM files that containg the data.
     Note this depends on the directory structure in place.
     '''
+    n_times = (end_time - start_time).total_seconds() / (60 * 30.) + 1
+    timelist = [start_time + datetime.timedelta(seconds=60 * 30. * n) for n in n_times]
+    filelist = []
+    for time in timelist:
+        f += [glob.glob(gpm_dir + time.strftime('%Y/%m/%d/*%Y%m%d-S%H%M*.nc'))] # Note assumes only one file for each timestamp
     return timelist, filelist
 
