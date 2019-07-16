@@ -9,10 +9,11 @@ gpm_dir = '/gws/nopw/j04/swift/GPM/' # Directory on Jasmin, will need to change.
 gpm_res = 0.1
 
 
-def read_gpm(start_time, lon_min, lon_max, lat_min, lat_max, end_time=start_time, varname='precipitationCal'):
+def read_gpm(start_time, lon_min, lon_max, lat_min, lat_max, end_time=-9999, varname='precipitationCal'):
     '''
     Reads GPM precipitation data into an array with dimensions time, lat, lon
     '''
+    if end_time == -9999: end_time = start_time
     n_lon = int((lon_max - lon_min) / gpm_res)
     n_lat = int((lat_max - lat_min) / gpm_res)
     times, filelist = get_gpm_filelist(start_time, end_time)
