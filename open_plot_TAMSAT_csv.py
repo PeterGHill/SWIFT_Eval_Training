@@ -1,4 +1,4 @@
-# This code opens and plots the data from a csv file
+# This code opens and plots the data from a csv file  
 # obtained from the TAMSAT data extraction tool
 # it uses the numpy and matplotlib libraries
 # and the csv and datetime libraries
