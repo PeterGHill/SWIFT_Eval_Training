@@ -31,7 +31,7 @@ def read_gpm(start_time, lon_min, lon_max, lat_min, lat_max, end_time=-9999, var
         elif ncfile.variables[varname].ndim == 2:
             rain[i,:,:] = ncfile.variables[varname][ind_lon[0]:ind_lon[-1]+1, ind_lat[0]:ind_lat[-1]+1]
         else:
-            print varname, "has", ncfile.variables[varname].ndim, "dimensions, which is beyond the scope of this code"
+            print(varname, "has", ncfile.variables[varname].ndim, "dimensions, which is beyond the scope of this code")
     rain = np.ma.masked_array(rain, mask=(rain < 0.0))
     return times, lons[ind_lon], lats[ind_lat], rain
 
