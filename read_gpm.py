@@ -33,7 +33,7 @@ def read_gpm(start_time, lon_min, lon_max, lat_min, lat_max, end_time=-9999, var
         else:
             print(varname, "has", ncfile.variables[varname].ndim, "dimensions, which is beyond the scope of this code")
     rain = np.ma.masked_array(rain, mask=(rain < 0.0))
-    return times, lons[ind_lon], lats[ind_lat], rain
+    return rain, lats[ind_lat], lons[ind_lon], times
 
 
 def get_gpm_filelist(start_time, end_time):
