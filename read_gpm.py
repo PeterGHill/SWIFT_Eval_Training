@@ -19,7 +19,7 @@ def read_gpm(start_time, lon_min, lon_max, lat_min, lat_max, end_time=-9999, var
     n_lon = int((lon_max - lon_min) / gpm_res)
     n_lat = int((lat_max - lat_min) / gpm_res)
     times, filelist = get_gpm_filelist(start_time, end_time)
-    rain = np.zeros((len(times), n_lon, n_lat))
+    rain = np.zeros((len(times), n_lat, n_lon))
     for i, f in enumerate(filelist):
         ncfile = Dataset(f)
         lons = ncfile.variables['lon'][:]
@@ -27,9 +27,9 @@ def read_gpm(start_time, lon_min, lon_max, lat_min, lat_max, end_time=-9999, var
         ind_lon = np.where((lons >= lon_min) & (lons <= lon_max))[0]
         ind_lat = np.where((lats >= lat_min) & (lats <= lat_max))[0]
         if ncfile.variables[varname].ndim == 3: # Some GPM files have an extra dimension - don't understand why
-            rain[i,:,:] = ncfile.variables[varname][0,ind_lon[0]:ind_lon[-1]+1, ind_lat[0]:ind_lat[-1]+1]
+            rain[i,:,:] = ncfile.variables[varname][0,ind_lon[0]:ind_lon[-1]+1, ind_lat[0]:ind_lat[-1]+1].T
         elif ncfile.variables[varname].ndim == 2:
-            rain[i,:,:] = ncfile.variables[varname][ind_lon[0]:ind_lon[-1]+1, ind_lat[0]:ind_lat[-1]+1]
+            rain[i,:,:] = ncfile.variables[varname][ind_lon[0]:ind_lon[-1]+1, ind_lat[0]:ind_lat[-1]+1].T
         else:
             print(varname, "has", ncfile.variables[varname].ndim, "dimensions, which is beyond the scope of this code")
     rain = np.ma.masked_array(rain, mask=(rain < 0.0))
