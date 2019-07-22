@@ -10,7 +10,7 @@
 import numpy as np
 
 import netCDF4
-from netCDF4 import netcdftime,num2date 
+from netCDF4 import num2date 
 
 # Plotting libraries
 import matplotlib.pyplot as plt
