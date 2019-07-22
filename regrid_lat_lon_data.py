@@ -1,8 +1,9 @@
 from scipy.interpolate import griddata
+import numpy as np
 
 
-def regrid(lon, lat, data, method='cubic', new_lat=np.arange(0.5,30), new_lon=np.arange(-19.5,20), min_val=0.0):
-#   Note, this assumes that data.shape = (Lat, lon) or (:, lat, lon).
+def regrid(lat, lon, data, method='cubic', new_lat=np.arange(0.5,30), new_lon=np.arange(-19.5,20), min_val=0.0):
+#   Note, this assumes that data.shape = (lat, lon) or (:, lat, lon).
     data_shape = data.shape
     n_lon = new_lon.size
     n_lat = new_lat.size
@@ -16,7 +17,7 @@ def regrid(lon, lat, data, method='cubic', new_lat=np.arange(0.5,30), new_lon=np
         ind = np.where(values >= min_val)
         values = values[ind]
         points = points[ind]
-        result = griddata(points, values, new_points, method=method, fill_value=-np.NaN).reshape(n_lon, n_lat) # works for gerb
+        result = griddata(points, values, new_points, method=method, fill_value=-np.NaN).reshape(n_lat, n_lon) # works for gerb
     else:
         result = []
         for i in range(data_shape[0]):
