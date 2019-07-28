@@ -18,7 +18,8 @@ t_rain, t_lat, t_lon, t_datevar = open_plot_TAMSAT_netCDF.open_TAMSAT_netCDF(fil
 # Plot TAMSAT map
 plotting_routines.plot_map(t_rain.mean(axis=0), t_lat, t_lon, savename='TAMSAT_rainfall_map_28June2018.png') # Change savename as approrpitate
 
-# Load GPM data
+# Load GPM data.
+# ********NB need to change gpm_dir in read_gpm.py for this to work********************
 start_time = datetime.datetime(2018,6,28,0,0,0)
 end_time = datetime.datetime(2018,6,28,23,30,0,0)
 lon_min = -25. # West boundary of domain
