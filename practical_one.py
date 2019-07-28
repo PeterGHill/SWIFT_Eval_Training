@@ -33,7 +33,7 @@ plotting_routines.plot_map(g_rain.mean(axis=0), g_lat, g_lon, savename='GPM_IMER
 
 # Load GPM data around Kumasi and plot GPM diurnal cycle
 g_rain_kumasi, g_lat_kumasi, g_lon_kumasi, g_datevar_kumasi = read_gpm.read_gpm(start_time, 1.6, 1.7, 6.6, 6.7, end_time=end_time)
-plotting_routines.timeseries_plot(g_rain_kumasi, g_datevar_kumasi, 'Rainfall (mm h1-1)', savename='Kumasi_GPM_diurnal_cycle_28June2018.png')
+plotting_routines.timeseries_plot(g_rain_kumasi.mean(axis=(1,2)), g_datevar_kumasi, 'Rainfall (mm h1-1)', savename='Kumasi_GPM_diurnal_cycle_28June2018.png')
 
 # regrid both datasets to same resolution
 new_res = 0.25 # new resolution in degrees change to look at how differences change with averaging scales
