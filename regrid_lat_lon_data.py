@@ -27,7 +27,7 @@ def regrid(lat, lon, data, method='cubic', new_lat=np.arange(0.5,30), new_lon=np
     return result
 
 
-def average_regrid(lon, lat, data, new_lat=np.arange(0.5,30), new_lon=np.arange(-19.5,20), min_val=0.0, times_n = 1):
+def average_regrid(lat, lon, data, new_lat=np.arange(0.5,30), new_lon=np.arange(-19.5,20), min_val=0.0, times_n = 1):
     data[data < min_val] = np.nan
     lat_bin_size = new_lat[1]-new_lat[0]
     lon_bin_size = new_lon[1]-new_lon[0]
