@@ -35,3 +35,35 @@ def plot_map(data,lat,lon, title='TAMSAT Rainfall', fig=plt.figure(), subplot='1
         if savename != '':
             plt.savefig(savename)
         plt.show()
+
+        
+def scatter_plot(data1, data2, title1, title2, fig=plt.figure(), subplot='111', savename=''):
+    # Generate axes
+    ax = fig.add_subplot(subplot)
+    plt.plot(data1, data2, 'ko')
+    plt.xlabel(title1)
+    plt.ylabel(title2)
+    mean_diff = data1.mean() - data2.mean()
+    correlation = np.corrcoef(data1, data2)
+    rms_diff = np.sqrt(np.mean((data1-data2)**2))
+    plt.text(0.25, 0.75, 'Difference='+mean_diff+'\nR2='+correlation+'\nRMSD='+rms_diff, horizontalalignment='left', verticalalignment='top',transform=ax.transAxes)
+    if int(subplot[2]) == int(subplot[0])*int(subplot[1]):
+        if savename != '':
+            plt.savefig(savename)
+        plt.show()
+
+        
+def timeseries_plot(data, time, varname, fig=plt.figure(), subplot='111', savename=''):
+    ax = fig.add_subplot(subplot)
+    plt.plot(time, data)
+    plt.xlabel('Time')
+    plt.ylabel(varname)
+    if int(subplot[2]) == int(subplot[0])*int(subplot[1]):
+        if savename != '':
+            plt.savefig(savename)
+        plt.show()
+    
+   
+   
+       
+            
