@@ -35,6 +35,7 @@ def average_regrid(lon, lat, data, new_lat=np.arange(0.5,30), new_lon=np.arange(
         result = np.zeros((times_n, new_lon.size, new_lat.size))
     else:
         result = np.zeros((new_lon.size, new_lat.size))
+    lon, lat = np.meshgrid(lon, lat)
     for i in range(new_lat.size):
         for j in range(new_lon.size):
             ind = np.where((abs(lon - new_lon[j]) <= lon_bin_size/2.0) &
@@ -43,5 +44,5 @@ def average_regrid(lon, lat, data, new_lat=np.arange(0.5,30), new_lon=np.arange(
                 for k in range(times_n):
                     result[k, j, i] = np.nanmean(data[k,:,:][ind])
             else:
-                result[j, i] = np.nanmean(data[ind])
-    return result
+                result[j, i] = np.ma.mean(data[ind])
+    return result.T
