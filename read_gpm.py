@@ -16,8 +16,8 @@ def read_gpm(start_time, lon_min, lon_max, lat_min, lat_max, end_time=-9999, var
     Reads GPM precipitation data into an array with dimensions time, lat, lon
     '''
     if end_time == -9999: end_time = start_time
-    n_lon = int((lon_max - lon_min) / gpm_res)
-    n_lat = int((lat_max - lat_min) / gpm_res)
+    n_lon = round((lon_max - lon_min) / gpm_res)
+    n_lat = round((lat_max - lat_min) / gpm_res)
     times, filelist = get_gpm_filelist(start_time, end_time)
     rain = np.zeros((len(times), n_lat, n_lon))
     for i, f in enumerate(filelist):
