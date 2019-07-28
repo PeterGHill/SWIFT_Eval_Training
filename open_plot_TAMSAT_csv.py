@@ -33,7 +33,7 @@ for line in csv_output:
 
     # Extract and convert the date and rainfall
     date       = line[0]
-    dt_object  = datetime.datetime.strptime(date,'%d/%m/%Y')
+    dt_object  = datetime.datetime.strptime(date,'%Y-%m-%d')#'%d/%m/%Y')
     rain_value = float(line[1])
 
     # Append to arrays
