@@ -7,7 +7,7 @@ import numpy as np
 import datetime
 import glob
 
-gpm_dir = '/gws/nopw/j04/swift/GPM/' # Directory on Jasmin, will need to change.
+gpm_dir = r"C:/Users/PeterHill/SWIFT_Eval_Practical/GPM/" # Directory on Jasmin, will need to change.
 gpm_res = 0.1
 
 
