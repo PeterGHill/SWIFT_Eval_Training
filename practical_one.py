@@ -52,4 +52,4 @@ difference = regridded_t_rain - (regridded_g_rain * 24.)
 plotting_routines.plot_map(difference, new_lat, new_lon, savename='TAMSAT_minus_GPM_rainfall_map_28June2018.png') # Change savename as approrpitate
 
 # Scatterplot comparison, incuding correlations
-plotting_routines.scatter_plot(regridded_t_rain, regridd_g_rain * 24., 'TAMSAT rainfall (mm day-1)', 'GPM IMERG Rainfall (mm day-1)', savename='TAMSAT_GPM_scatterplot_28June2018.png')
+plotting_routines.scatter_plot(regridded_t_rain, regridded_g_rain * 24., 'TAMSAT rainfall (mm day-1)', 'GPM IMERG Rainfall (mm day-1)', savename='TAMSAT_GPM_scatterplot_28June2018.png')
