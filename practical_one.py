@@ -27,10 +27,9 @@ lon_max = 55. # East boundary
 lat_min = -15. # South boundary
 lat_max = 25. # North boundary
 g_rain, g_lat, g_lon, g_datevar = read_gpm.read_gpm(start_time, lon_min, lon_max, lat_min, lat_max, end_time=end_time)
-print "g_rain.shape=", g_rain.shape
 
 # Plot GPM map
-plotting_routines.plot_map(g_rain.mean(axis=0), g_lat, g_lon, savename='GPM_IMERG_rainfall_map_28June2018.png') # Change savename as approrpitate
+plotting_routines.plot_map(g_rain.mean(axis=0), g_lat, g_lon, savename='GPM_IMERG_rainfall_map_28June2018.png', title='GPM IMERG Rainfall') # Change savename as approrpitate
 
 # Load GPM data around Kumasi and plot GPM diurnal cycle
 g_rain_kumasi, g_lat_kumasi, g_lon_kumasi, g_datevar_kumasi = read_gpm.read_gpm(start_time, 1.6, 1.7, 6.6, 6.7, end_time=end_time)
