@@ -9,6 +9,7 @@ import open_plot_TAMSAT_netCDF
 import plotting_routines
 import read_gpm
 import regrid_lat_lon_data
+import datetime
 
 # Load TAMSAT daily data. Load different days by editing the filename.
 filename = r"C:\Users\PeterHill\SWIFT_Eval_Practical\TAMSAT\rfe2018_06_28.v3.nc" # Need to change to match the location of the file on your computer. 
