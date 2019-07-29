@@ -1,0 +1,57 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+{\fonttbl\f0\fswiss\fcharset0 Helvetica-Bold;\f1\fswiss\fcharset0 Helvetica;\f2\fnil\fcharset0 Menlo-Regular;
+}
+{\colortbl;\red255\green255\blue255;\red0\green0\blue0;}
+{\*\expandedcolortbl;;\csgray\c0;}
+{\*\listtable{\list\listtemplateid1\listhybrid{\listlevel\levelnfc23\levelnfcn23\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{hyphen\}}{\leveltext\leveltemplateid1\'01\uc0\u8259 ;}{\levelnumbers;}\fi-360\li720\lin720 }{\listname ;}\listid1}
+{\list\listtemplateid2\listhybrid{\listlevel\levelnfc0\levelnfcn0\leveljc0\leveljcn0\levelfollow0\levelstartat1\levelspace360\levelindent0{\*\levelmarker \{decimal\})}{\leveltext\leveltemplateid101\'02\'00);}{\levelnumbers\'01;}\fi-360\li720\lin720 }{\listname ;}\listid2}}
+{\*\listoverridetable{\listoverride\listid1\listoverridecount0\ls1}{\listoverride\listid2\listoverridecount0\ls2}}
+\paperw11900\paperh16840\margl1440\margr1440\vieww18860\viewh8400\viewkind0
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+
+\f0\b\fs28 \cf0 Fractions Skill Score
+\f1\b0\fs24 \
+\
+The Fractions Skill Score (FSS) was developed by Roberts and Lean (2008).\
+https://journals.ametsoc.org/doi/full/10.1175/2007MWR2123.1\
+\
+This method compares rainfall predicted by a model to observations. The unique aspect of FSS is that it compares the rainfall within a neighbourhood surrounding each grid-point, rather than just at the grid-point. This is important when verifying convection-permitting (CP) models, as it reduces the \'91double penalty\'92 problem. For more details, please see the slides associated with this practical\
+\
+All the files you will need for this practical can be found at: https://homepages.see.leeds.ac.uk/~eebjw/fss_practical/ in the fss_practial.zip file. Download this to your computer and unzip.\
+\
+\ul List of scripts for this practical:\ulnone \
+\
+fss.py				Main script, works through various stages of computing FSS\
+cube_extract.py		Extracts data from NetCDF within given latitude and longitude bounds\
+plot_map.py			Plots data on a map with country and land boundaries\
+corner_count.py		Returns summed area matrix where the [i,j]th entry is the sum of all entries 				of the input matrix with i'<i and j'<j\
+four_corners.py		Uses summed area matrix to find number of grid-points exceeding 				threshold using the \'91fast\'92 method described in: \
+				http://metnet.imd.gov.in mausamdocs/166310_F.pdf\
+compute_mse.py		Computes mean square error between observations and model (in this 				case for fraction of grid-points exceeding threshold)\
+compute_mse_ref.py	Computes reference mean square error between observations and model 				(in this case for fraction of grid-points exceeding threshold), see Roberts 				and Lean (2008) for more details	\
+compute_fss.py		Computes fractions skill score\
+	\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \ul \ulc0 List of data for this practical:\
+\ulnone \
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls1\ilvl0\cf0 {\listtext	\uc0\u8259 	}Simulated precipitation from the global (~10km, \'91
+\f2\fs22 \cf2 \CocoaLigature0 n1280_ga6\'92
+\f1\fs24 \cf0 \CocoaLigature1 ) and Tropical Africa MetUM (4.4km, \'91
+\f2\fs22 \cf2 \CocoaLigature0 takm4p4_protora1t\'92
+\f1\fs24 \cf0 \CocoaLigature1 ) forecast models for 1800 UTC on 26th June 2018 from 00Z initialisations on 25th and 26th June\
+{\listtext	\uc0\u8259 	}Observed precipitation from GPM (0.1 deg, ~11km)\
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardirnatural\partightenfactor0
+\cf0 \
+\ul Tasks\ulnone \
+\
+\pard\tx220\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\li720\fi-720\pardirnatural\partightenfactor0
+\ls2\ilvl0\cf0 {\listtext	1)	}Open the file fss.py and read though steps 1 and 2. Note that initially we are only looking at the CP model data. Run this script and note that the script will stop when it reaches the line reading \'91sys.exit()\'92 (this command is very useful when testing code). Notice that the observed data is in mm h-1, whereas the simulated data is in kg m-2 s-1. mm is equivalent to kg m-2, but we must convert the model data from seconds to hours. Re-run the code, now stopping it after step 3 (by moving sys.exit() to just before the plotting section).\
+{\listtext	2)	}It is a good idea to plot the data to ensure it looks how we expect. Move sys.exit() to after the plotting code in order to plot the precipitation data. Note that the first time you run this code, some mapping data will need to be downloaded from the internet. However, the code will be faster for subsequent runs.\
+{\listtext	3)	}In step 4, we specify the rainfall thresholds we wish to use, as well as the neighbourhood sizes. Note that the neighbourhood sizes must be an odd number and must be written in increasing order. Some suggested values are given, but you should play around with these values later to see how they affect the skill score. Step 5 creates binary fields for the model and observations, with 1 (or True) where the rainfall exceeds the threshold and 0 (or False) elsewhere. The plotting code at the end of step 5 plots the binary fields. By eye, compare the proportion of grid-boxes exceeding the threshold in the observations and model data. Note that you should comment out plt.show() on the previous plot before running this.\
+{\listtext	4)	}Step 6 creates the summed area matrix necessary to perform the \'91fast\'92 calculation of number of grid-boxes exceeding the threshold within a certain neighbourhood. Add a plotting script to the end of step 6 which plots the summed area matrices for the observations and model (you can copy and adapt the code at the end of step 5). There should be low values in one corner and high values in the corner diagonally opposite.\
+{\listtext	5)	}Now run all the code (comment out previous plots) and look at the FSS curve produced. This could take a couple of minutes to run.\
+{\listtext	6)	}The horizontal line through FSS=0.5 shows the spatial scale at which the model has skill - what does this correspond to in grid-boxes?\
+{\listtext	7)	}Given that the observations have a grid-spacing of approximately 11km, change the x-axis of the plot to show the spatial scale in km.\
+{\listtext	8)	}FSS is very useful for performing comparisons between e.g. different rainfall thresholds or different models. Use a \'91for\'92 loop to either loop through different thresholds or loop through the two different model configurations (CP and global) to see how the FSS changes.\
+{\listtext	9)	}As discussed during the powerpoint, sometimes an absolute rainfall threshold is not appropriate given that the distribution of rainfall in observations, global and CP models can be very different. Instead, a percentile threshold can be used, so that the threshold is dependent upon the dataset. Adapt the code so that a percentile threshold is used instead. (This task is for those who are more familiar with python).}
