@@ -23,7 +23,7 @@ def distance_scale (f1, f2):
   if f1 > 0 or f2 > 0:
    D = (f1 - f2)**2/((f1)**2 +(f2)**2) 
   elif f1 == 0 and f2 == 0:
-   D = 0 
+   D = 1
   return D 
 
 
