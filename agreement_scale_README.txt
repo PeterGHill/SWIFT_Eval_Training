@@ -16,6 +16,8 @@ We will focus on the case of 26-30 June 2018 for West Africa.
 
 python files to be considered:
 
+practial_two_agreement #this is the main file to be used to run the code
+
 agreement.py #in this file there are the functions to calculate the agreement scale for cp deterministic and global model
 
 reading_gpm_data.py #this is to read the gpm data and to calculate accumulation for a particular day on a time period you chose
