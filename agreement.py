@@ -79,7 +79,7 @@ def agreement_scale_calculation_cp(alpha,maxscale,valid_date,init_date,init_time
 
 
   for s in range (maxscale, -1, -1):
-      print ('scale',s)
+      print ('Calculating agreement at scale',s)
       f1 = eight_neighbor_average_convolve2d(obs, s)
       f2 = eight_neighbor_average_convolve2d(forecast,s)
       f2=f2[latcpa:latcpb,loncpa:loncpb]
@@ -91,7 +91,7 @@ def agreement_scale_calculation_cp(alpha,maxscale,valid_date,init_date,init_time
 
          if math.isnan(f2[i,j])==False: 
           if distance_scale(f1[i, j],f2[i, j])<=Dcrit(alpha, maxscale,s):
-            print ('agrscale',s) 
+            
             agr_scale[i, j] = s
          else:
             agr_scale[i,j]=np.nan   
@@ -113,7 +113,7 @@ def agreement_scale_calculation_global(alpha,maxscale,valid_date,init_date,init_
   loncpa=indexlonobs[0]
   loncpb=indexlonobs[len(indexlonobs)-1]+1
   for s in range (maxscale, -1, -1):
-      print ('scale',s)
+      print ('Calculating agreement at scale',s)
       f1 = eight_neighbor_average_convolve2d(obs, s)
       f2 = eight_neighbor_average_convolve2d(forecast,s)
       f2=f2[latcpa:latcpb,loncpa:loncpb]
@@ -124,7 +124,7 @@ def agreement_scale_calculation_global(alpha,maxscale,valid_date,init_date,init_
       for i in range (len (obs[:,0])): #this is to calculate the agreement scale at each point
         for j in range (len (obs[0,:])):
 
-          print (f1[i,j],f2[i,j],'ciao')
+          
           if math.isnan(f2[i,j])==False: 
            if distance_scale(f1[i, j],f2[i, j])<=Dcrit(alpha, maxscale,s):
             print ('agrscale',s) 
