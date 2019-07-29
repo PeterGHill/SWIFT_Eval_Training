@@ -18,6 +18,9 @@ t_rain, t_lat, t_lon, t_datevar = open_plot_TAMSAT_netCDF.open_TAMSAT_netCDF(fil
 # Plot TAMSAT map
 plotting_routines.plot_map(t_rain.mean(axis=0), t_lat, t_lon, cbar_levels=np.arange(0,90,10), savename='TAMSAT_rainfall_map_26June2018.png') # Change savename as approrpitate
 
+# Load and plot TAMSAT timeseries data
+import open_plot_TAMSAT_csv # Will need to change filename.  Also possible issues with date format. Should be YYYY-MM-DD
+
 # Load GPM data.
 # ********NB need to change gpm_dir in read_gpm.py for this to work********************
 start_time = datetime.datetime(2018,6,26,0,0,0)
