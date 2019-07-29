@@ -6,7 +6,7 @@ import numpy as np
 def reading_cp_model_data(date,init_time):
 
 
-    filename='C:/Users/carlo/Documents/Summer_School_evaluation/Data/'+str(date)+'T'+str(init_time).rjust(2,'0')+'00'+'Z_TAFRICA2_takm4p4_protora1t_4203_128.nc'
+    filename='path_to_file/'+str(date)+'T'+str(init_time).rjust(2,'0')+'00'+'Z_TAFRICA2_takm4p4_protora1t_4203_128.nc'
     
     
     d=nc.Dataset(filename)
@@ -21,7 +21,7 @@ def reading_cp_model_data(date,init_time):
 def reading_global_model_data(date,init_time):
 
 
-    filename='C:/Users/carlo/Documents/Summer_School_evaluation/Data/'+str(date)+'T'+str(init_time).rjust(2,'0')+'00'+'Z_TAFRICA2_n1280_ga6_5216_128.nc'
+    filename='path_to_file/'+str(date)+'T'+str(init_time).rjust(2,'0')+'00'+'Z_TAFRICA2_n1280_ga6_5216_128.nc'
     
     
     d=nc.Dataset(filename)
