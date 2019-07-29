@@ -28,7 +28,7 @@ proj = ccrs.PlateCarree(central_longitude=0) # projection for maps
 def main():
     
     '''Step 1: Load data'''
-    fpath = '???'
+    fpath = '/Users/eebjw/Downloads/fss_practical/'
     fname_obs = fpath+'gpm_imerg_production_V06B_20180626_1800.nc' # path to observations
     obs = iris.load(fname_obs)[0] # load observational data
     model = 'takm4p4_protora1t' # model name for CP model, note that global model name is 'n1280_ga6'
@@ -46,7 +46,7 @@ def main():
     print (obs.units)
     print (mod.units)
     
-    sys.exit() # stops code
+    sys.exit()
     
     '''Step 3: Make units the same'''
     mod.convert_units('kg m-2 h-1')
@@ -56,11 +56,12 @@ def main():
     cmap = plt.cm.jet
     cmap.set_under('white')
     levels =[0.1,0.2,0.5,1,2,5,10,20,50]
+    X,Y = np.meshgrid(obs.coord('longitude').points,obs.coord('latitude').points) # create X and Y coordinates
     ax = plt.subplot(121,projection=proj) # set up subplot for observational data
-    ax,im = plot_map(ax,obs,cmap,levels) # plot observational data
+    ax,im = plot_map(ax,X,Y,obs.data,cmap,levels) # plot observational data
     ax.set_title('Observations')
     bx = plt.subplot(122,projection=proj) # set up subplot for model data
-    bx,im = plot_map(bx,mod,cmap,levels) # plot model data
+    bx,im = plot_map(bx,X,Y,mod.data,cmap,levels) # plot model data
     bx.set_title('Model')
     cbar_ax = fig.add_axes([0.1, 0.1, 0.8, 0.03]) # create axis for colorbar
     cbar = fig.colorbar(im, cax=cbar_ax,orientation='horizontal') # add colorbar
@@ -75,6 +76,23 @@ def main():
     '''Step 5: Convert to binary field - all grid squares exceeding the threshold have a value of 1 and all others a value of 0'''
     I_obs = obs.data>thresh
     I_mod = mod.data>thresh
+    
+    '''Plot binary fields'''
+    fig = plt.figure(figsize=(8,5))
+    cmap = plt.cm.viridis
+    levels =[0,1,2]
+    X,Y = np.meshgrid(obs.coord('longitude').points,obs.coord('latitude').points) # create X and Y coordinates
+    ax = plt.subplot(121,projection=proj) # set up subplot for observational data
+    ax,im = plot_map(ax,X,Y,I_obs,cmap,levels) # plot observational data
+    ax.set_title('Observations')
+    bx = plt.subplot(122,projection=proj) # set up subplot for model data
+    bx,im = plot_map(bx,X,Y,I_mod,cmap,levels) # plot model data
+    bx.set_title('Model')
+    cbar_ax = fig.add_axes([0.1, 0.1, 0.8, 0.03]) # create axis for colorbar
+    cbar = fig.colorbar(im, cax=cbar_ax,orientation='horizontal') # add colorbar
+    cbar.set_label('precipitation rate (mm h$^{-1}$)') # label colorbar
+    plt.subplots_adjust(bottom=0.19,top=0.99) # adjust layout to fit nicely
+    plt.show()
     
     '''Step 6: Create summed area matrix for use in four corners method '''        
     Z_obs = corner_count(I_obs) # Compute summed-area matrix for obs
@@ -98,7 +116,6 @@ def main():
     ax.set_ylabel('FSS')
     ax.axhline(y=0.5,color='k')
     plt.show()
-
 
 if __name__ == '__main__':
     main()
