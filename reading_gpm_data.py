@@ -7,7 +7,7 @@ def reading_gpm_observations(date):
     
     
     
-    filename='C:/Users/carlo/Documents/Summer_School_evaluation/Data/gpm_imerg_production_V06B_'+str(date)+'.nc'
+    filename='path_to_file'
     
     
     d=nc.Dataset(filename)
