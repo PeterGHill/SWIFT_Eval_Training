@@ -27,7 +27,7 @@ PLOTTING FUNCTIONS
 
 plot_spatial_rainfall.py #this is to plot the spatial map of rainfall for obs and models
 
-plot_agreement.py #this is to plot the spatial map of agreement scale for both cp and global model #to plot 1 map it should take 5-6 minutes
+plot_agreement.py #this is to plot the spatial map of agreement scale for both cp and global model #to plot 1 map it should take 5-6 minutes, depending on your maxscale
 
 
 
