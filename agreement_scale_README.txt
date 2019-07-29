@@ -1,4 +1,6 @@
-
+In this practical the aim is to find out at which scale (neighbourhood) the convection-permitting model is sufficiently similar to 
+the observations. 
+We will focus on the case of 26-30 June 2018 for West Africa.
 
 
 
