@@ -85,7 +85,7 @@ def plot_spatial_rainfall_acc_cp_model(date,valid_date,init_time,start_time,end_
     return
 
 
-def plot_rainfall_acc_global_model(date,valid_date,init_time,start_time,end_time,latmin,latmax,lonmin,lonmax):
+def plot_spatial_rainfall_acc_global_model(date,valid_date,init_time,start_time,end_time,latmin,latmax,lonmin,lonmax):
 
     filenameobs='C:/Users/carlo/Documents/Summer_School_evaluation/Data/gpm_imerg_production_V06B_'+str(valid_date)+'.nc'
     d=nc.Dataset(filenameobs)
