@@ -55,10 +55,12 @@ def eight_neighbor_average_convolve2d (x, scale):
 def agreement_scale_calculation_cp(alpha,maxscale,valid_date,init_date,init_time,start_time_mod,end_time_mod,start_time_obs,end_time_obs,latmin,latmax,lonmin,lonmax):
 
   'in this code we calculate the agreement scale for the cp model'
+   'alpha is the "tolerance factor", maxscale is the max number of grid points from the centre of neighbourhood you want to find similarity with obs'
   'init_date is the date when the forecast is issued'
   'init_time is the time when forecast is initialised (00 and 12 UTC only available)'
   'start_time_mod-end_time_mode is the lead time window you want to forecast the rainfall'
   'start_time_obs and end time obs are the times (UTC) of gpm-imerg accumulations'
+   
 
   obs=gpm.obs_precip_accumulation_over_a_time_period(valid_date,start_time_obs,end_time_obs,latmin,latmax,lonmin,lonmax)
   forecast=mod.cp_model_accumulation_regridded(init_date,init_time,start_time_mod,end_time_mod)
