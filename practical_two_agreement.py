@@ -21,7 +21,7 @@ lonmax=10
 pltrain.plot_rainfall_acc_scale_obs(valid_date,start_time,end_time,latmin,latmax,lonmin,lonmax)
 
 
-init_date = #chose the date when the forecast is issued
+init_date = #chose the date when the forecast is issued in yyyymmdd format
 init_time = #chose the initialization time of the forecast (this can be 0 or 12)
 start_time = #this is the lead time (must be multiple of 3 since we have 3 hourly forecast)
 end_time= #this has to be start_time+3,+6,+12,+24 depending which accumulation period you are considering
