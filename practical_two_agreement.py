@@ -5,9 +5,9 @@ import plot_spatial_rainfall as pltrain
 
 
 
-valid_date = 20180628
-start_time=0
-end_time=24
+valid_date = 20180628 #this is the case for WA
+start_time=0 #change 
+end_time=24 #change this if you want to look at sub-daily rainfall accumulations
 
 latmin=-5
 latmax=10
@@ -21,13 +21,18 @@ lonmax=10
 pltrain.plot_rainfall_acc_scale_obs(valid_date,start_time,end_time,latmin,latmax,lonmin,lonmax)
 
 
+#plotting CP deterministic on a map
+
 init_date = #chose the date when the forecast is issued in yyyymmdd format
 init_time = #chose the initialization time of the forecast (this can be 0 or 12)
-start_time = #this is the lead time (must be multiple of 3 since we have 3 hourly forecast)
+start_time = #this is the lead time (e.g. if you chose 12 UTC of the previous day, this is 12 (12 hours ahead)
 end_time= #this has to be start_time+3,+6,+12,+24 depending which accumulation period you are considering
 
-#plotting CP deterministic on a map
 pltrain.plot_spatial_rainfall_acc_cp_model(init_date,valid_date,init_time,start_time,end_time,latmin,latmax,lonmin,lonmax)
+
+
+
+
 
 
 #plotting global deterministic on a map
